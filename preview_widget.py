@@ -10,6 +10,7 @@ class PreviewWidget(wid.QGraphicsView):
         self.image = wid.QGraphicsPixmapItem()
         self.image.setPixmap(gui.QPixmap("image.jpg"))
         scene.addItem(self.image)
-
         #layout
         self.setScene(scene)
+
+    

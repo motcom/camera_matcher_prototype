@@ -1,12 +1,16 @@
+from os.path import isfile
 import PySide6.QtWidgets as wid
 import os
+import os.path
 
 class FileWidget(wid.QDockWidget):
     def get_files_abs_path(self) -> list[str]:
         self.files_abs_path = []
         file_names = os.listdir(self.load_path)
+
         for file_name in file_names:
-            self.files_abs_path.append(os.path.join(self.load_path, file_name))
+            if os.path.isfile(file_name):
+                self.files_abs_path.append(os.path.join(self.load_path, file_name))
         return self.files_abs_path
 
     def set_load_path(self, path):
