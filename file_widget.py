@@ -1,21 +1,23 @@
-from os.path import isfile
 import PySide6.QtWidgets as wid
 import os
 import os.path
+import PySide6.QtCore as core
+
 
 class FileWidget(wid.QDockWidget):
-    def get_files_abs_path(self) -> list[str]:
+    emmit_signal_getfiles_abs_path = core.Signal(list)
+    def signal_get_files_abs_path(self):
         self.files_abs_path = []
         file_names = os.listdir(self.load_path)
 
         for file_name in file_names:
-            if os.path.isfile(file_name):
-                self.files_abs_path.append(os.path.join(self.load_path, file_name))
-        return self.files_abs_path
+            self.files_abs_path.append(os.path.join(self.load_path, file_name))
+        self.emmit_signal_getfiles_abs_path.emit(self.files_abs_path)
 
     def set_load_path(self, path):
         self.load_path = path
         self.line_load_path.setText(self.load_path)
+        self.signal_get_files_abs_path()
 
     def on_load_btn(self):
         tmp_load_path = wid.QFileDialog.getExistingDirectory(self, "Select Directory", ".")

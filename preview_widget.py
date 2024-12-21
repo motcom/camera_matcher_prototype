@@ -1,5 +1,4 @@
 import PySide6.QtWidgets as wid
-import PySide6.QtCore as core
 import PySide6.QtGui as gui
 
 class PreviewWidget(wid.QGraphicsView):
@@ -12,5 +11,8 @@ class PreviewWidget(wid.QGraphicsView):
         scene.addItem(self.image)
         #layout
         self.setScene(scene)
+
+    def slot_update_image(self,img):
+        self.image.setPixmap(gui.QPixmap(img))
 
     

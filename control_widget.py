@@ -1,5 +1,4 @@
 import PySide6.QtWidgets as wid
-import PySide6.QtCore as core
 
 class ControleWidget(wid.QDockWidget):
     def get_values(self):

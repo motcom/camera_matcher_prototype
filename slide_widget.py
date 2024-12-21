@@ -1,12 +1,19 @@
 import PySide6.QtWidgets as wid
 import PySide6.QtCore as core
 
+
 class SlideWidget(wid.QDockWidget):
+    # シグナル
+    signal_frame_changed = core.Signal(int)
 
     def update_frame(self):
         # フレームを更新
         self.movie_slider.setValue(self.current_frame)
         self.current_frame_display.display(self.current_frame)
+
+        # シグナルを発行
+        self.signal_frame_changed.emit(self.current_frame)
+
         self.update()
 
     def on_timer_timeout(self):
@@ -14,6 +21,7 @@ class SlideWidget(wid.QDockWidget):
         self.current_frame += 1
         if self.current_frame > self.spn_end_frame.value():
             self.on_btn_stop_click()
+            return
 
         # スライダーの値を更新
         self.update_frame()
