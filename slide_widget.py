@@ -6,6 +6,13 @@ class SlideWidget(wid.QDockWidget):
     # シグナル
     signal_frame_changed = core.Signal(int)
 
+    def slot_frame_min_max(self, min_frame, max_frame):
+        # フレームの最小値と最大値を受信
+        self.spn_start_frame.setValue(min_frame)
+        self.spn_end_frame.setValue(max_frame)
+        self.movie_slider.setRange(min_frame, max_frame)
+        self.update_frame()
+
     def update_frame(self):
         # フレームを更新
         self.movie_slider.setValue(self.current_frame)
