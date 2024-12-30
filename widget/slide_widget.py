@@ -5,6 +5,7 @@ import PySide6.QtCore as core
 class SlideWidget(wid.QDockWidget):
     # シグナル
     signal_frame_changed = core.Signal(int)
+    signal_tarcker_update = core.Signal()
 
     def slot_frame_min_max(self, min_frame, max_frame):
         # フレームの最小値と最大値を受信

@@ -8,7 +8,6 @@ class ControleWidget(wid.QDockWidget):
         # create
         self.contena = wid.QWidget()
         self.checkBox_featurePoint = wid.QCheckBox("Feature Point")
-
         self.spacer = wid.QSpacerItem(20, 400, wid.QSizePolicy.Expanding, wid.QSizePolicy.Expanding)
 
         # layout
